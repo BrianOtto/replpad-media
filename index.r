@@ -2,7 +2,7 @@ do %audio.r
 do %video.r
 
 css-do {
-    .media-title {
+    .media-banner {
         background: #E9ECEF;
         border-color: #222222;
         border-left-width: 5px;
@@ -13,7 +13,7 @@ css-do {
         font-family: 'Noto Sans', sans-serif;
     }
     
-    .media-title a {
+    .media-banner a {
         color: #222222;
         font-weight: bold;
         text-decoration: none;
@@ -24,7 +24,7 @@ css-do {
 }
 
 print/html rejoin [
-    "<div class=^"media-title^">"
+    "<div class=^"media-banner^">"
     "Powered by "
     "<a href=^"https://github.com/BrianOtto/replpad-media^" target=^"_blank^">"
     "REPLPAD Media Library"
