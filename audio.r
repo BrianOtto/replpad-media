@@ -59,7 +59,11 @@ audio: func [
     ]
     
     ; major scales
-    ; TODO: Look into automating key adjustments by counting
+    ; TODO: Calculate these scales mathematically
+    ;       If that is not possible then create some lookup tables
+    ;       and compose new blocks as suggested by @hostilefork
+    ;       https://github.com/BrianOtto/replpad-media/commit/
+    ;       c99f42b1f651c5f92224eaf7385dd6c2a496cfcd#r33421860
     switch key [
         "A"  [
             change next find frequency "A" select frequency "F#"
