@@ -1,3 +1,4 @@
+do %media.r
 do %audio.r
 do %video.r
 
@@ -21,8 +22,18 @@ css-do {
         padding-bottom: 2px;
         outline: none;
     }
+    
+    button {
+        color: #222222;
+        background: #E9ECEF;
+        padding: 10px;
+        margin-top: 10px;
+        cursor: pointer;
+        font-family: 'Noto Sans', sans-serif;
+    }
 }
 
+; TODO: Accept a param that hides the banner (i.e. /nobanner)
 print/html rejoin [
     "<div class=^"media-banner^">"
     "Powered by "

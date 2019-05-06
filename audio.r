@@ -1,7 +1,7 @@
 audio-init: false
 
-; TODO: Add support for the <audio> tag and import/export 
-;       for different formats like MIDI, LRC, Tablature
+; TODO: Add support for importing/exporting 
+;       different formats like MIDI, LRC, Tab
 audio: func [
     notes [block!]
     /lyrics [text!]
@@ -301,4 +301,35 @@ audio: func [
     js-do rejoin [
         "rpAudio.exit(" onend ")"
     ]
+]
+
+audio-player: func [
+    url [file! url!]
+    /id [text!]
+    /nocontrols
+    /autoplay
+    /muted
+    /loop
+    /type [text!]
+][
+    id: default [copy next find-last url "/"]
+    type: default [rejoin ["audio/" next find-last url "."]]
+    
+    trim/with id rejoin ["." type]
+    
+    print/html rejoin [
+        "<audio id=^"" id "^""
+        either nocontrols [""][" controls"]
+        either autoplay [" autoplay"][""]
+        either muted [" muted"][""]
+        either loop [" loop"][""]
+        ">"
+        "<source src=^""  url "^" type=^"" type "^">"
+        "</audio>"
+    ]
+    
+    player: media-object
+    player/id: id
+    
+    player
 ]
