@@ -17,7 +17,7 @@ media-object: make object! [
                 player.play().catch(error => {
                     if (error.name === 'NotAllowedError') {
                         player.parentNode.insertAdjacentHTML('beforeend', 
-                            '<button onclick="player.play()">Allow Audio Playback</button>')
+                            '<button onclick="player.play()">Allow Media Playback</button>')
                     }
                 })
             }

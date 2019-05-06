@@ -261,6 +261,7 @@ audio: func [
         " and using octave " octave "')"
     ]
     
+    ; TODO: Add support for chords, e.g. audio [ chord [ A E ] 1x8 ]
     while [not tail? notes] [
         note: to text! notes/1
         duration: notes/2
@@ -312,20 +313,22 @@ audio-player: func [
     /loop
     /type [text!]
 ][
-    id: default [copy next find-last url "/"]
-    type: default [rejoin ["audio/" next find-last url "."]]
+    id: default [copy next find-last url {/}]
+    type: default [unspaced [{audio/} next find-last url {.}]]
     
-    trim/with id rejoin ["." type]
+    trim/with id unspaced [{.} type]
     
-    print/html rejoin [
-        "<audio id=^"" id "^""
-        either nocontrols [""][" controls"]
-        either autoplay [" autoplay"][""]
-        either muted [" muted"][""]
-        either loop [" loop"][""]
-        ">"
-        "<source src=^""  url "^" type=^"" type "^">"
-        "</audio>"
+    print/html unspaced [
+        {<audio id="} id {"} spaced [
+            if not nocontrols '{controls}
+            if autoplay '{autoplay}
+            if muted '{muted}
+            if loop '{loop}
+        ] {>}
+        
+        {<source src="} url {" type="} type {">}
+        
+        {</audio>}
     ]
     
     player: media-object
