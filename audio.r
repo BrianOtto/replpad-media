@@ -16,7 +16,7 @@ audio: func [
     lyrics: default [_]
     volume: default [100]
     delay: default [0]
-    onend: default [""]
+    onend: default [_]
     octave: default [4]
     key: default ["C"]
     sig: default [4x4]
@@ -252,11 +252,11 @@ audio: func [
         }
     ]
     
-    js-do rejoin [
+    js-do unspaced [
         "rpAudio.init(" delay ")"
     ]
     
-    js-do rejoin [
+    js-do unspaced [
         "console.info('rpAudio - Playing in the key of " key 
         " and using octave " octave "')"
     ]
@@ -294,12 +294,12 @@ audio: func [
             duration: me * 1000
         ]
         
-        js-do rejoin [
+        js-do unspaced [
             "rpAudio.play(" select frequency note ", " duration ", " volume ")"
         ]
     ]
     
-    js-do rejoin [
+    js-do unspaced [
         "rpAudio.exit(" onend ")"
     ]
 ]

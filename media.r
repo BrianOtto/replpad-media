@@ -4,13 +4,13 @@ media-object: make object! [
     id: ""
     
     play: func [] [
-        js-do rejoin [
+        js-do unspaced [
             "console.info('rpAudio - Playing ID #" id "')"
         ]
         
         ; Allows autoplay and player/play to work with the new browser restrictions
         ; See https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
-        js-do rejoin [
+        js-do unspaced [
             "var player = document.querySelector('#" id "')"
             
             {
@@ -25,11 +25,11 @@ media-object: make object! [
     ]
     
     pause: func [] [
-        js-do rejoin [
+        js-do unspaced [
             "console.info('rpAudio - Pausing ID #" id "')"
         ]
         
-        js-do rejoin [
+        js-do unspaced [
             "document.querySelector('#" id "').pause()"
         ]
     ]
