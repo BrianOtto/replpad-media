@@ -4,33 +4,33 @@ media-object: make object! [
     id: ""
     
     play: func [] [
-        js-do unspaced [
-            "console.info('rpAudio - Playing ID #" id "')"
-        ]
+        log unspaced ["Playing ID #" id]
         
         ; Allows autoplay and player/play to work with the new browser restrictions
         ; See https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide
-        js-do unspaced [
-            "var player = document.querySelector('#" id "')"
+        js-do unspaced [{
+            var player = document.querySelector('#} id {')
             
-            {
-                player.play().catch(error => {
-                    if (error.name === 'NotAllowedError') {
-                        player.parentNode.insertAdjacentHTML('beforeend', 
-                            '<button onclick="player.play()">Allow Media Playback</button>')
-                    }
-                })
-            }
-        ]
+            player.play().catch(error => {
+                if (error.name === 'NotAllowedError') {
+                    player.parentNode.insertAdjacentHTML('beforeend', 
+                        '<button onclick="player.play()">Allow Media Playback</button>')
+                }
+            })
+        }]
     ]
     
     pause: func [] [
-        js-do unspaced [
-            "console.info('rpAudio - Pausing ID #" id "')"
-        ]
+        log unspaced ["Pausing ID #" id]
         
         js-do unspaced [
             "document.querySelector('#" id "').pause()"
+        ]
+    ]
+    
+    log: func [message] [
+        js-do unspaced [
+            "console.info('rpMedia - " message "')"
         ]
     ]
 ]
